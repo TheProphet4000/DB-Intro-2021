@@ -19,7 +19,7 @@ public class SelectEksempel {
      */
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:Opskrifter.db";
+        String url = "jdbc:sqlite:MobilePay.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -34,7 +34,7 @@ public class SelectEksempel {
      * select all rows in the warehouses table
      */
     public void selectAll(){
-        String sql = "SELECT * FROM opskrifter";
+        String sql = "SELECT * FROM opskrifter";   //Ret denne til ny DB
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -42,7 +42,7 @@ public class SelectEksempel {
             
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("id") +  ". " +
+                System.out.println(rs.getInt("id") +  ". " +                //Ret disse til ny DB
                                    rs.getString("navn") + "\n" +
                                    rs.getString("opskrift") + "\n" +
                                    rs.getString("ingredienser") + "\n\n"
@@ -62,7 +62,8 @@ public class SelectEksempel {
         System.out.print("Indtast et søgeord: ");
         brugerInput = scanner.nextLine();
 
-        String sql = "SELECT * FROM opskrifter WHERE navn ='" + brugerInput + "'";
+        String sql = "SELECT * FROM opskrifter WHERE navn ='" + brugerInput + "'"; // RET DENNE
+
         // Eksempel på LIKE (slet kommentartegnet og søg på la --> Du vil nu finde både Gulash og Lasagne, fordi de indeholde "la")
         // sql = "SELECT * FROM opskrifter WHERE navn LIKE '%" + brugerInput + "%'";
 
@@ -74,7 +75,7 @@ public class SelectEksempel {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getString("navn"));
+                System.out.println(rs.getString("navn")); // ret denne
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
