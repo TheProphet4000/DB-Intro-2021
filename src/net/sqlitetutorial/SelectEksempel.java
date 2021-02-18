@@ -34,7 +34,7 @@ public class SelectEksempel {
      * select all rows in the warehouses table
      */
     public void selectAll(){
-        String sql = "SELECT * FROM opskrifter";   //Ret denne til ny DB
+        String sql = "SELECT * FROM User";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -42,10 +42,10 @@ public class SelectEksempel {
             
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("id") +  ". " +                //Ret disse til ny DB
-                                   rs.getString("navn") + "\n" +
-                                   rs.getString("opskrift") + "\n" +
-                                   rs.getString("ingredienser") + "\n\n"
+                System.out.println(rs.getInt("ID") +  ". " +
+                                   rs.getString("NAME") + "\n" +
+                                   rs.getString("PHONENUMBER") + "\n" +
+                                   rs.getString("ADDRESS") + "\n\n"
                 );
             }
         } catch (SQLException e) {
@@ -62,10 +62,7 @@ public class SelectEksempel {
         System.out.print("Indtast et søgeord: ");
         brugerInput = scanner.nextLine();
 
-        String sql = "SELECT * FROM opskrifter WHERE navn ='" + brugerInput + "'"; // RET DENNE
-
-        // Eksempel på LIKE (slet kommentartegnet og søg på la --> Du vil nu finde både Gulash og Lasagne, fordi de indeholde "la")
-        // sql = "SELECT * FROM opskrifter WHERE navn LIKE '%" + brugerInput + "%'";
+        String sql = "SELECT * FROM User WHERE NAME ='" + brugerInput + "'";
 
         System.out.println(sql);
 
@@ -75,7 +72,7 @@ public class SelectEksempel {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getString("navn")); // ret denne
+                System.out.println(rs.getString("NAME"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
