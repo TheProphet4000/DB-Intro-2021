@@ -2,38 +2,38 @@ package net.sqlitetutorial;
 
 import java.sql.*;
 
-public class List {
+public class List
+{
 
-    public static void main(String[] args) {
-        connect();
-        selectAll();
-    }
+    public static void main(String[] args)
+    {
+        try
+        {
+            String myUrl = "jdbc:sqlite:C:\\Users\\Prophet\\IdeaProjects\\MobilePay.db";
+            Connection conn = DriverManager.getConnection(myUrl);
 
-    public static Connection connect() {
-        Connection conn = null;
-        try {
-            String url = "jdbc:sqlite:C:/Users/Prophet/IdeaProjects/MobilePay.db";
-            conn = DriverManager.getConnection(url);
+            String query = "SELECT * FROM User";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
 
-            System.out.println("Connection to SQLite has been established.");
-            System.out.println(url); //fortæller brugeren at alt er ok
+            while (rs.next())
+            {
+                int id = rs.getInt("ID");
+                String name = rs.getString("NAME");
+                String phonenumber = rs.getString("PHONENUMBER");
+                Date dateCreated = rs.getDate("REGISTRATIONDATE");
+                String card = rs.getString ("CARDDETAILS");
+                String comp = rs.getString("COMPNAME");
 
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) { //Prøver at oprette forbindelse til serveren, hvis alt går galt skal den lukke session
-
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                // print the results
+                System.out.format("%s, %s, %s, %s, %s, %s\n", id, name, phonenumber, dateCreated, card, comp);
             }
+            st.close();
         }
-        return conn;
-    }
-
-    public static void selectAll(){
-        System.out.println(("ID") + " " + ("NAME") + " " + ("PHONENUMBER") + " " + ("ADDRESS"));
+        catch (Exception e)
+        {
+            System.err.println("Somthing is wrong here ");
+            System.err.println(e.getMessage());
+        }
     }
 }
