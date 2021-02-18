@@ -34,6 +34,6 @@ public class List {
     }
 
     public static void selectAll(){
-        System.out.println(("ID") +  ". " + ("NAME") + "\n" + ("PHONENUMBER") + "\n" + ("ADDRESS") + "\n\n");
+        System.out.println(("ID") + " " + ("NAME") + " " + ("PHONENUMBER") + " " + ("ADDRESS"));
     }
 }
