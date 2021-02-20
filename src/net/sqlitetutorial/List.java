@@ -9,10 +9,11 @@ public class List
     {
         try
         {
-            String myUrl = "jdbc:sqlite:C:\\Users\\Prophet\\IdeaProjects\\MobilePay.db";
+            String myUrl = "jdbc:sqlite:C:/Users/Prophet/IdeaProjects/MobilePay.db";
             Connection conn = DriverManager.getConnection(myUrl);
+            System.out.println(myUrl);
 
-            String query = "SELECT * FROM User";
+            String query = "select * from User ";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
 
@@ -25,14 +26,14 @@ public class List
                 String card = rs.getString ("CARDDETAILS");
                 String comp = rs.getString("COMPNAME");
 
-                // print the results
+
                 System.out.format("%s, %s, %s, %s, %s, %s\n", id, name, phonenumber, dateCreated, card, comp);
             }
             st.close();
         }
         catch (Exception e)
         {
-            System.err.println("Somthing is wrong here ");
+            System.err.println("Somthing is wrong here : ");
             System.err.println(e.getMessage());
         }
     }
