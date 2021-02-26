@@ -9,31 +9,26 @@ public class List
     {
         try
         {
-            String myUrl = "jdbc:sqlite:C:/Users/Prophet/IdeaProjects/MobilePay.db";
+            String myUrl = "jdbc:sqlite:C:/Users/Prophet/Documents/GitHub/DB-Intro-2021/MobilePay.db";
             Connection conn = DriverManager.getConnection(myUrl);
             System.out.println(myUrl);
 
-            String query = "select * from User ";
+            String query = "select * from user";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next())
             {
-                int id = rs.getInt("ID");
-                String name = rs.getString("NAME");
-                String phonenumber = rs.getString("PHONENUMBER");
-                Date dateCreated = rs.getDate("REGISTRATIONDATE");
-                String card = rs.getString ("CARDDETAILS");
-                String comp = rs.getString("COMPNAME");
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
 
-
-                System.out.format("%s, %s, %s, %s, %s, %s\n", id, name, phonenumber, dateCreated, card, comp);
+                System.out.format("%s, %s\n", id, name);
             }
             st.close();
         }
         catch (Exception e)
         {
-            System.err.println("Somthing is wrong here : ");
+            System.err.println("Something is wrong here: ");
             System.err.println(e.getMessage());
         }
     }
